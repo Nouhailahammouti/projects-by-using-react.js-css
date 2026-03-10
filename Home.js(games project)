@@ -1,0 +1,69 @@
+import { useState } from "react";
+import pic1 from "./images/Memory card game.png";
+import pic2 from "./images/Tic-Tac-Toee.png";
+import pic3 from "./images/sudoku.png";
+import Memory from "./Memory";
+
+
+function Home() {
+ const [sudoku,setSudoku]=useState("");
+ const[tic,setTic]=useState("");
+ const[memory,setMemory]=useState(false)
+  function MemoryGame(){
+    setMemory(true)
+  }
+  if(memory){
+    return < Memory/>
+  }
+
+  function Sudoku (){}
+  function TicTacToe(){}
+  return (
+    <div className="home-wrapper">
+
+      <nav className="top-menu">
+        <div className="logo">Games</div>
+
+        <ul className="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sudoku</a></li>
+          <li><a href="#">Tic-Tac-Toe</a></li>
+          <li><a href="#">Memory Game</a></li>
+        </ul>
+      </nav>
+
+      <h1 className="choose">Choose a Game</h1>
+
+      <div className="games-container">
+
+        <div className="game-card">
+          <img src={pic1} alt="Memory Game"/>
+                    <h3>Memory Gam</h3>
+
+          <button className="play-btn" onClick={ MemoryGame}>Play</button>
+        </div>
+
+        <div className="game-card">
+          
+          <img src={pic2} alt="Tic Tac Toe"/>
+          <h3>Tic Tac Toe</h3>
+          <button className="play-btn">Play</button>
+        </div>
+
+        <div className="game-card">
+          <img src={pic3} alt="Sudoku"/>
+                  <h3>sudoko</h3>
+
+          <button className="play-btn">Play</button>
+        </div>
+      </div>
+</div>
+
+  
+  );
+}
+
+
+
+
+export default Home;
