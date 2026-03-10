@@ -1,0 +1,17 @@
+function Memory(){
+    
+    return(
+         <div className="home-wrapper" >
+
+      <nav className="top-menu">
+        <div className="logo">Games</div>
+
+        <ul className="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sudoku</a></li>
+          <li><a href="#">Tic-Tac-Toe</a></li>
+          <li><a href="#">Memory Game</a></li>
+        </ul>
+      </nav></div>)
+};
+export default Memory;
