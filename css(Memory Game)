@@ -171,3 +171,51 @@ justify-content:center;
 .card.wrong {
   background: red;
 }
+/* Container spacing */
+.home-wrapper {
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Label and input */
+label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 8px 10px;
+  font-size: 16px;
+  border: 2px solid #64748b;
+  border-radius: 6px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input[type="number"]:focus {
+  border-color: #1e293b;
+  box-shadow: 0 0 5px rgba(30, 41, 59, 0.5);
+}
+
+/* Button */
+button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  background-color: #1e293b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #334155;
+}
+
+button:active {
+  transform: scale(0.97);
+}
