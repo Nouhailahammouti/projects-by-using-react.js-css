@@ -1,17 +1,113 @@
-function Memory(){
-    
-    return(
-         <div className="home-wrapper" >
+import { useState } from "react";
 
+function Memory() {
+  const [gridsize, setGride] = useState(4);
+  const [card, setCard] = useState([]);
+  const [flipt, setFlipt] = useState([]); // currently flipped cards
+  const [solved, setSolved] = useState([]); // matched cards
+  const [disable, setDisable] = useState(false);
+  const [won, setWon] = useState(false);
+
+  function handelchengrid(e) {
+    const size = parseInt(e.target.value);
+    if (size >= 2 && size <= 10) {
+      setGride(size);
+    }
+  }
+
+  function initializegame() {
+    const cards = gridsize * gridsize;
+    const manycard = Math.floor(cards / 2);
+    const numbers = [...Array(manycard).keys()].map((n) => n + 1);
+    const shuffledNumbers = [...numbers, ...numbers]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, cards)
+      .map((number, index) => ({ id: index, number }));
+
+    setCard(shuffledNumbers);
+    setFlipt([]);
+    setSolved([]);
+    setWon(false);
+  }
+
+  function handelckilcard(id) {
+    if (disable || won) return;
+    if (flipt.includes(id) || solved.includes(id)) return;
+
+    if (flipt.length === 0) {
+      setFlipt([id]);
+      return;
+    }
+
+    if (flipt.length === 1) {
+      const firstId = flipt[0];
+      const firstCard = card.find((c) => c.id === firstId);
+      const secondCard = card.find((c) => c.id === id);
+
+      setFlipt([firstId, id]);
+      setDisable(true);
+
+      if (firstCard.number === secondCard.number) {
+        // matched
+        setSolved([...solved, firstId, id]);
+        setFlipt([]);
+        setDisable(false);
+
+        if (solved.length + 2 === card.length) {
+          setWon(true);
+        }
+      } else {
+        // not matched, flip back after 1s
+        setTimeout(() => {
+          setFlipt([]);
+          setDisable(false);
+        }, 1000);
+      }
+    }
+  }
+
+  const flipted = (id) => flipt.includes(id) || solved.includes(id);
+
+  return (
+    <div className="home-wrapper">
       <nav className="top-menu">
         <div className="logo">Games</div>
-
         <ul className="menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Sudoku</a></li>
-          <li><a href="#">Tic-Tac-Toe</a></li>
-          <li><a href="#">Memory Game</a></li>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Sudoku</a>
+          </li>
+          <li>
+            <a href="#">Tic-Tac-Toe</a>
+          </li>
+          <li>
+            <a href="#">Memory Game</a>
+          </li>
         </ul>
-      </nav></div>)
-};
+      </nav>
+
+      <h1>Memory Game</h1>
+      <label>Grid size</label>
+      <input type="number" id="grid" value={gridsize} onChange={handelchengrid} />
+      <button onClick={initializegame}>Start Game</button>
+
+      {won && <h2>You Won! 🎉</h2>}
+
+      <div className="cards">
+        {card.map((cards) => (
+          <div
+            key={cards.id}
+            onClick={() => handelckilcard(cards.id)}
+            className={`card ${flipted(cards.id) ? "flipped" : ""}`}
+          >
+            {flipted(cards.id) ? cards.number : "?"}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default Memory;
