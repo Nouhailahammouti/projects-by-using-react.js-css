@@ -1,0 +1,93 @@
+import { useState } from "react";
+
+function TicTacToe() {
+  const [items, setItems] = useState(Array(9).fill(""));
+  const [player, setPlayer] = useState("x");
+  const [won, setWon] = useState("");
+
+  // All winning combinations
+  const winPatterns = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  function checkWinner(board) {
+    for (let pattern of winPatterns) {
+      const [a, b, c] = pattern;
+      if (
+        board[a] &&
+        board[a] === board[b] &&
+        board[a] === board[c]
+      ) {
+        return board[a];
+      }
+    }
+    return null;
+  }
+
+  function startthegame(index) {
+    if (won) return;
+
+    const newItems = [...items];
+
+    if (newItems[index] !== "") return;
+
+    newItems[index] = player;
+    setItems(newItems);
+
+    const winner = checkWinner(newItems);
+
+    if (winner) {
+      setWon(`${winner} won 🎉`);
+      return;
+    }
+
+    setPlayer(player === "x" ? "o" : "x");
+  }
+
+  function restart() {
+    setItems(Array(9).fill(""));
+    setPlayer("x");
+    setWon("");
+  }
+
+  return (
+    <div className="home-wrapper">
+      <nav className="top-menu">
+        <div className="logo">Games</div>
+        <ul className="menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Sudoku</a></li>
+          <li><a href="#">Tic-Tac-Toe</a></li>
+          <li><a href="#">Memory Game</a></li>
+        </ul>
+      </nav>
+
+      <div className="board">
+        {items.map((cell, index) => (
+          <button
+            key={index}
+            onClick={() => startthegame(index)}
+            className="cell"
+          >
+            {cell}
+          </button>
+        ))}
+      </div>
+
+      {won && <h4 className="winner">{won}</h4>}
+
+      <button onClick={restart} className="restart-btn">
+        Try Again
+      </button>
+    </div>
+  );
+}
+
+export default TicTacToe;
