@@ -1,0 +1,173 @@
+
+.choose{
+text-align:center;
+margin-top:60px;
+font-size:42px;
+letter-spacing:2px;
+}
+
+
+/* GAMES CONTAINER */
+
+.games-container{
+display:flex;
+justify-content:center;
+gap:50px;
+margin-top:60px;
+flex-wrap:wrap;
+}
+
+
+/* GAME CARD */
+
+.game-card{
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+padding:18px;
+width:220px;
+text-align:center;
+transition:0.4s;
+box-shadow:0 15px 30px rgba(0,0,0,0.6);
+}
+
+
+/* CARD HOVER */
+
+.game-card:hover{
+transform:translateY(-8px) scale(1.05);
+box-shadow:0 20px 40px rgba(0,0,0,0.9);
+}
+
+
+/* GAME IMAGE */
+
+.game-card img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:15px;
+border:3px solid rgba(255,255,255,0.1);
+transition:0.4s;
+}
+
+
+/* IMAGE HOVER */
+
+.game-card:hover img{
+transform:scale(1.08);
+border-color:#38bdf8;
+box-shadow:0 0 20px rgba(56,189,248,0.6);
+}
+
+
+/* PLAY BUTTON */
+
+.play-btn{
+margin-top:18px;
+padding:10px 28px;
+border:none;
+border-radius:25px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+color:white;
+background:linear-gradient(45deg,#38bdf8,#6366f1);
+transition:0.3s;
+}
+
+
+/* BUTTON HOVER */
+
+.play-btn:hover{
+transform:scale(1.12);
+background:linear-gradient(45deg,#0ea5e9,#4f46e5);
+box-shadow:0 0 20px #38bdf8;
+}
+.cards{
+display:grid;
+grid-template-columns:repeat(4,80px);
+gap:10px;
+margin-top:20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(4,80px);
+gap:12px;
+margin-top:25px;
+justify-content:center;
+}
+
+.card{
+width:80px;
+height:80px;
+background:#1e293b;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+font-weight:bold;
+color:white;
+border-radius:12px;
+cursor:pointer;
+transition:0.2s;
+
+}
+.card{
+font-family:Arial, Helvetica, sans-serif;
+letter-spacing:2px;
+}
+
+.card:hover{
+background:#334155;
+transform:scale(1.05);
+}
+.cards{
+display:grid;
+grid-template-columns:repeat(4,80px);
+gap:12px;
+margin-top:20px;
+justify-content:center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.card {
+  width: 80px;
+  height: 80px;
+  background: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card.flipped {
+  background: black;
+}
+
+.card.solved {
+  background: green;
+}
+
+.card.wrong {
+  background: red;
+}
